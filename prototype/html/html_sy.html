@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <script type="text/javascript" src="../resources/js/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="../js/html_sy.js"></script>
+</head>
+<style>
+
+    .top_banner{
+        height:30px;
+        line-height:30px;
+        padding-top:5px;
+        padding-bottom:5px;
+        background:#F4F4F4;
+    }
+    .clearfix:after {
+        content: '.';
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+    }
+    .top_logo>img{
+
+        float:left;
+        padding-left:20px;
+        width:38px;
+        height:30px;
+    }
+    .user_no{
+
+     }
+    .box-left{
+        width: 15%;
+        float: left;
+        background: #434343;
+
+    }
+    .box>div{
+        height:100%;
+    }
+    .addback{
+
+        background: #282828;
+        cursor:pointer;
+    }
+    .box-left>ul>li{
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+
+    }
+    .box-right{
+        width:85%;
+        float:right;
+        background:url("../image/box_right.jpg");
+        background-size:100% 100%;
+    }
+    .username{
+        float:right;
+        padding-right:10px;
+    }
+    .cover{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #141924;
+        opacity: 0.8;
+    }
+    body{
+        overflow: hidden;
+        overflow: -moz-hidde-unscrollable;
+    }
+    .back{
+        cursor:pointer;
+        font-size:12px;
+    }
+    .join{
+        position:absolute;
+        top:30%;
+        left:45%;
+        z-index: 1;
+    }
+    .join span{
+        font-size: 18px;
+        color: #ffffff;
+        display: block;
+        text-align: right;
+        margin: 20% 0;
+    }
+    .join span>input{
+        border: 1px solid #ffffff;
+    }
+    form>input[type="submit"]{
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="top_banner">
+        <div class="top_logo">
+            <img src="../image/logo.png" >
+        </div>
+        <div class="username">
+            <span class="user_no">ID:夏天</span>
+            <span class="back">登出</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="box">
+        <div class="box-left">
+            <ul>
+                <li data_name="bqk">标签库</li>
+                <li data_name="shjbk">鉴黄任务</li>
+            </ul>
+        </div>
+        <div class="box-right">
+            <iframe id="right_home" src="" frameborder="0" style="width:100%;height:100%"></iframe>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+<div class="join">
+    <form action="">
+        <span>
+            用户名 <input type="text">
+
+        </span>
+        <span>
+             密码 <input type="password">
+        </span>
+        <input type="button" value="登入" style="width:100%">
+    </form>
+</div>
+<div class="cover"></div>
+</body>
+</html>

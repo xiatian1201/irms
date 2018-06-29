@@ -1,0 +1,146 @@
+.top>ul>li{
+    float: left;
+    width: 50%;
+    border: 1px solid #cccccc;
+    height: 35px;
+    margin: 10px 0;
+    line-height: 35px;
+    text-align: center;
+    font-size: 18px;
+    background: linear-gradient(#ffffff, #cccccc);
+}
+.gzt_main>ul>li{
+    background: #ffffff;
+    margin:1% 0;
+    cursor:pointer;
+}
+.top>ul>li:nth-child(1){
+    border-right: 1px solid #cccccc;
+
+}
+.img_kuan>span{
+    float:left;
+
+}
+.img_list>ul>li{
+    text-align: center;
+    margin: 1% 0;
+}
+.list_btn{
+    border-top:1px solid #cccccc;
+    height:30px;
+    line-height: 30px;
+    margin:1%;
+}
+.list_btn span:nth-child(1){
+    color:#3399FF;
+    border-right:1px solid #cccccc;
+}
+.list_btn span{
+    width:50%;
+    float:left;
+    text-align:center;
+}
+.img_list>ul>li>span:nth-child(1){
+    text-align: right;
+}
+.img_list>ul>li>span:nth-child(2){
+    display: inline-block;
+    width: 100px;
+    background: #FF9999;
+    border: 1px solid red;
+    margin: 0px 20px;
+}
+.big_img{
+    width:60%;
+    position: relative;
+}
+.img_list{
+    width:40%;
+}
+.img_box{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 134px;
+    height: 120px;
+    opacity: 0.5;
+    background: #ff9999;
+}
+.checkbox{
+    padding-left:10px;
+    color:#cccccc;
+}
+.checkbox>span:nth-child(1){
+    width: 15px;
+    height: 15px;
+    display:inline-block;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+}
+.checkboxi>span:nth-child(1){
+    background: rgb(0, 153, 255);
+}
+.checkboxi>span:nth-child(2){
+    color: rgb(0, 153, 255);
+}
+.img_kuan{
+    padding-left:10px;
+}
+.img_kuan>span:nth-child(1)>img{
+    width:100%;
+}
+body{
+    padding:0 1%;
+    background:#f2f2f2;
+}
+.top_tight{
+    float:right;
+}
+.top_tight>span,.clicki{
+    color: #3399FF;
+    cursor:pointer;
+}
+.top_tight>ul>li{
+    float: left;
+    width: 20px;
+    text-align: center;
+    cursor:pointer;
+}
+
+.top_left{
+    float:left;
+}
+.top_left,.top_tight{
+    width:50%;
+}
+.top_tight>span,.top_tight>input,.top_tight>ul{
+    float:left
+}
+.top_tight>span{
+    padding:0 1%;
+    text-align:center;
+}
+.top>ul>li.iclick{
+    color: #3399FF;
+    background:transparent;
+}
+.top_left>li:nth-child(2){
+    color:#3399FF;
+}
+.top_left>li{
+    float:left;
+    cursor:pointer;
+    padding-left:20px;
+}
+.gzt_top{
+    background: -webkit-linear-gradient(#fafafa, #d9d9d9);
+    background: -o-linear-gradient(#fafafa, #d9d9d9);
+    background: -moz-linear-gradient(#fafafa, #d9d9d9);
+    background: linear-gradient(#fafafa, #d9d9d9);
+    height:40px;
+    line-height:40px;
+}
+.top>ul{
+
+}

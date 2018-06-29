@@ -1,0 +1,93 @@
+.box{
+    width:80%;
+    margin:0 auto;
+}
+body{
+    position: relative;
+}
+.commonform_span{
+    border-radius:1rem;
+    border:1px solid #CCCCCC;
+    display:block;
+    height:30px;
+    margin:0 auto;
+    line-height:31px;
+    padding-left:10px;
+}
+.commonform_input{
+    border: none;
+    width: 70%;
+}
+.commonform_submit{
+    background: #FF6600;
+    border: none;
+    border-radius: 1rem;
+    color: #fff;
+    width: 29%;
+    height: 27px;
+    line-height: 27px;
+    margin-top: 1px;
+    margin-right: 2px;
+    float: right;
+}
+.button_span{
+    border-radius: 1rem;
+    border: 1px dashed #ccc;
+    display: block;
+    height: 30px;
+    line-height: 31px;
+    padding-left: 10px;
+    text-align:center;
+    color:#cccccc;
+    cursor: pointer;
+}
+.top{
+    text-align: center;
+    padding: 20px 0;
+    font-size: 18px;
+}
+.box-grid>ul>li{
+    float: left;
+    width: 18%;
+    text-align: center;
+    color: #ffffff;
+    padding: 1%;
+}
+.box-grid{
+    margin:20px 0;
+}
+.box-grid>ul>li{
+    position:relative;
+}
+.box-grid>ul>li>span{
+    display: block;
+    text-align: center;
+    border-radius: 1rem;
+    background: #0099FF;
+    color: #ffffff;
+}
+.box-grid>ul>li>img{
+    position:absolute;
+    top: -1px;
+    right: 3px;
+    width: 24px;
+}
+.box-grid>ul>li>.click{
+    background: #FF6600;
+
+}
+.navigation>ul>li{
+    float:left;
+    font-size:15px;
+    height:30px;
+    margin:0 16px;
+    cursor: pointer;
+}
+.navigation>ul>li:nth-child(2){
+    color:#0099FF;
+
+}
+.navigation>ul>li:nth-child(3){
+    float:right;
+    color:#FF0000;
+}
