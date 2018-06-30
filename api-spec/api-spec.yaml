@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  title: Example
+  version: 0.0.1
+paths:
+  /users:
+    get:
+      description: Get users list
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+    post:
+      description: Create user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+  /users/{userId}:
+    get:
+      description: Get user
+      responses:
+        '200':
+          description: sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '404':
+          description: not found
+      parameters:
+        - name: userId
+          description: request user's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    put:
+      description: update user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '201':
+          description: update sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '400':
+          description: update fail
+        '404':
+          description: the requested user is not exist
+      parameters:
+        - name: userId
+          description: request user's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    delete:
+      description: delete user
+      responses:
+        '201':
+          description: delete success
+        '400':
+          description: delete fail
+        '404':
+          description: the request user is not exist
+      parameters:
+        - name: userId
+          description: request user's id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /datasets:
+    get:
+      description: Get datasets list.
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/dataset'
+    post:
+      description: Create dataset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dataset'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dataset'
+        '201':
+          description: fail
+  /dataset/{datasetId}:
+    get:
+      description: Get dataset.
+      responses:
+        '200':
+          description: sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dataset'
+        '404':
+          description: the requested dataset is not exist.
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    put:
+      description: modify dataset information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dataset'
+      responses:
+        '201':
+          description: update success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dataset'
+        '400':
+          description: update fail
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    delete:
+      description: delete dataset
+      responses:
+        '201':
+          description: delete success.
+        '400':
+          description: delete fail
+        '404':
+          description: the request dataset is not exist
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /dataset/{datasetId}/tags:
+    get:
+      description: get tag list
+      responses:
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    post:
+      description: create tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag'
+      responses:
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /dataset/{datasetId}/tags/{tagId}:
+    get:
+      description: get a tag of dataset
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag'
+        '400':
+          description: fail
+        '404':
+          description: not exist.
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: tagId
+          description: tag's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+    put:
+      description: update a tag of dataset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tag'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag'
+        '400':
+          description: fail
+        '404':
+          description: not exist
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: tagId
+          description: tag's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+    delete:
+      description: remove tag from dataset
+      responses:
+        '200':
+          description: delete tag
+
+      parameters:
+        - name: datasetId
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: tagId
+          description: tag's id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+  /dataset/{datasetId}/images:
+    get:
+      description: get the images of dataset
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+      parameters:
+        - name: id
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    post:
+      description: upload image to dataset
+      requestBody:
+        content:
+          'image/jpeg':
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: update success
+      parameters:
+        - name: id
+          description: dataset's id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /dataset/{datasetId}/images{imageId}:
+    get:
+      description: get the images
+      responses:
+        '200':
+          description: success
+          content:
+            'image/jpeg':
+              schema:
+                type: string
+                format: binary
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: imageId
+          description: the id of image
+          in: path
+          required: true
+          schema:
+            type: integer
+    delete:
+      description: remove images from dataset
+      responses:
+        '201':
+          description: remove success
+        '400':
+          description: remove fail
+        '404':
+          description: the requested image is not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: imageId
+          description: the id of image
+          in: path
+          required: true
+          schema:
+            type: integer
+  /dataset/{datasetId}/classifications:
+    get:
+      description: get classification list
+      responses:
+        '200':
+          description: get list success
+
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+    post:
+      description: create classification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/classification'
+      responses:
+        '200':
+          description: create success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/classification'
+        '400':
+          description: create fail
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+  /dataset/{datasetId}/classifications/{classificationId}:
+    get:
+      description: get classification
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/classification'
+        '404':
+          description: the requested classification is not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: classificationId
+          description: the id of classification
+          in: path
+          required: true
+          schema:
+            type: Integer
+    put:
+      description:
+    delete:
+      description:
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+    dataset:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: integer
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+    tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+    classification:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        image-id:
+          type: integer
+          format: int32
+        tag-id:
+          type: integer
+          format: int32
+        status:
+          type: integer
+    notation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        dataset-id:
+          type: integer
+          format: int32
+        image-id:
+          type: integer
+          format: int32
+        notation:
+          type: string
