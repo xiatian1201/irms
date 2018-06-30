@@ -1,11 +1,222 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
-  title: Example
+  title: Image Recognize Dataset Management System
   version: 0.0.1
+tags:
+  - name: Authentication
+    description: the operations of authentication.
+  - name: Team Manage
+    description: manage teams and members
+  - name: Dataset Manage
+    description: manage datasets
+  - name: Operations
+    description: functional operations
 paths:
+  /permissions:
+    get:
+      description: get permission list
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/permission'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+    post:
+      description: create permission.
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/permission'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/permission'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+  /roles:
+    get:
+      description: get roles list
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/role'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+    post:
+      description: create role.
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/role'
+      responses:
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+  /role/{roleId}:
+    get:
+      description: get role
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+      parameters:
+        - name: roleId
+          description: request user's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    put:
+      description: update role
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/role'
+      responses:
+        '201':
+          description: update sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/role'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+      parameters:
+        - name: roleId
+          description: request role's id
+          in: path
+          required: true
+          schema:
+            type: integer
+    delete:
+      description: delete user
+      tags:
+        - Authentication
+      responses:
+        '204':
+          description: delete success
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
+      parameters:
+        - name: roleId
+          description: request user's id
+          in: path
+          required: true
+          schema:
+            type: integer
   /users:
     get:
-      description: Get users list
+      description: get users list
+      tags:
+        - Authentication
       responses:
         '200':
           description: success
@@ -15,8 +226,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/user'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
     post:
-      description: Create user.
+      description: create user.
+      tags:
+        - Authentication
       requestBody:
         content:
           application/json:
@@ -29,9 +254,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/user'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
   /users/{userId}:
     get:
-      description: Get user
+      description: get user
+      tags:
+        - Authentication
       responses:
         '200':
           description: sucess
@@ -39,8 +278,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/user'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: not found
+          description: not exist.
       parameters:
         - name: userId
           description: request user's id
@@ -50,6 +299,8 @@ paths:
             type: integer
     put:
       description: update user
+      tags:
+        - Authentication
       requestBody:
         content:
           application/json:
@@ -63,9 +314,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/user'
         '400':
-          description: update fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the requested user is not exist
+          description: not exist.
       parameters:
         - name: userId
           description: request user's id
@@ -75,13 +334,23 @@ paths:
             type: integer
     delete:
       description: delete user
+      tags:
+        - Authentication
       responses:
-        '201':
+        '204':
           description: delete success
         '400':
-          description: delete fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the request user is not exist
+          description: not exist.
       parameters:
         - name: userId
           description: request user's id
@@ -92,6 +361,8 @@ paths:
   /datasets:
     get:
       description: Get datasets list.
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: success
@@ -101,25 +372,51 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/dataset'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
     post:
       description: Create dataset
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/dataset'
       responses:
-        '200':
+        '201':
           description: success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/dataset'
-        '201':
+        '400':
           description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
   /dataset/{datasetId}:
     get:
       description: Get dataset.
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: sucess
@@ -127,8 +424,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/dataset'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the requested dataset is not exist.
+          description: not exist.
       parameters:
         - name: datasetId
           description: dataset's id
@@ -138,6 +445,8 @@ paths:
             type: integer
     put:
       description: modify dataset information
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           application/json:
@@ -151,7 +460,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/dataset'
         '400':
-          description: update fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
       parameters:
         - name: datasetId
           description: dataset's id
@@ -161,13 +480,23 @@ paths:
             type: integer
     delete:
       description: delete dataset
+      tags:
+        - Dataset Manage
       responses:
-        '201':
+        '204':
           description: delete success.
         '400':
-          description: delete fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the request dataset is not exist
+          description: not exist.
       parameters:
         - name: datasetId
           description: dataset's id
@@ -177,8 +506,30 @@ paths:
             type: integer
   /dataset/{datasetId}/tags:
     get:
-      description: get tag list
+      description: get the tag list og dataset.
+      tags:
+        - Dataset Manage
       responses:
+        '200':
+          description: get success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tag'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
       parameters:
         - name: datasetId
           description: dataset's id
@@ -188,12 +539,32 @@ paths:
             type: integer
     post:
       description: create tag
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/tag'
       responses:
+        '201':
+          description: create success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tag'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist.
       parameters:
         - name: datasetId
           description: dataset's id
@@ -204,6 +575,8 @@ paths:
   /dataset/{datasetId}/tags/{tagId}:
     get:
       description: get a tag of dataset
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: success
@@ -213,6 +586,14 @@ paths:
                 $ref: '#/components/schemas/tag'
         '400':
           description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
           description: not exist.
       parameters:
@@ -232,6 +613,8 @@ paths:
             format: int32
     put:
       description: update a tag of dataset
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           application/json:
@@ -246,6 +629,14 @@ paths:
                 $ref: '#/components/schemas/tag'
         '400':
           description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
           description: not exist
       parameters:
@@ -265,10 +656,23 @@ paths:
             format: int32
     delete:
       description: remove tag from dataset
+      tags:
+        - Dataset Manage
       responses:
-        '200':
-          description: delete tag
-
+        '204':
+          description: delete success
+        '400':
+          description: delete fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not found
       parameters:
         - name: datasetId
           description: dataset's id
@@ -287,6 +691,8 @@ paths:
   /dataset/{datasetId}/images:
     get:
       description: get the images of dataset
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: success
@@ -296,8 +702,20 @@ paths:
                 type: array
                 items:
                   type: integer
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
       parameters:
-        - name: id
+        - name: datasetId
           description: dataset's id
           in: path
           required: true
@@ -305,6 +723,8 @@ paths:
             type: integer
     post:
       description: upload image to dataset
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           'image/jpeg':
@@ -314,8 +734,20 @@ paths:
       responses:
         '201':
           description: update success
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
       parameters:
-        - name: id
+        - name: datasetId
           description: dataset's id
           in: path
           required: true
@@ -324,6 +756,8 @@ paths:
   /dataset/{datasetId}/images{imageId}:
     get:
       description: get the images
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: success
@@ -332,6 +766,18 @@ paths:
               schema:
                 type: string
                 format: binary
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
       parameters:
         - name: datasetId
           description: the id of dataset
@@ -347,13 +793,23 @@ paths:
             type: integer
     delete:
       description: remove images from dataset
+      tags:
+        - Dataset Manage
       responses:
         '201':
-          description: remove success
+          description: success
         '400':
-          description: remove fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the requested image is not exist
+          description: not exist
       parameters:
         - name: datasetId
           description: the id of dataset
@@ -370,10 +826,29 @@ paths:
   /dataset/{datasetId}/classifications:
     get:
       description: get classification list
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: get list success
-
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/classification'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
       parameters:
         - name: datasetId
           description: the id of dataset
@@ -383,14 +858,16 @@ paths:
             type: integer
     post:
       description: create classification
+      tags:
+        - Dataset Manage
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/classification'
       responses:
-        '200':
-          description: create success
+        '201':
+          description: success
           content:
             application/json:
               schema:
@@ -398,7 +875,17 @@ paths:
                 items:
                   $ref: '#/components/schemas/classification'
         '400':
-          description: create fail
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
       parameters:
         - name: datasetId
           description: the id of dataset
@@ -409,6 +896,8 @@ paths:
   /dataset/{datasetId}/classifications/{classificationId}:
     get:
       description: get classification
+      tags:
+        - Dataset Manage
       responses:
         '200':
           description: success
@@ -416,8 +905,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/classification'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
         '404':
-          description: the requested classification is not exist
+          description: not exist
       parameters:
         - name: datasetId
           description: the id of dataset
@@ -430,11 +929,262 @@ paths:
           in: path
           required: true
           schema:
-            type: Integer
+            type: integer
     put:
-      description:
+      description: update classification
+      tags:
+        - Dataset Manage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/classification'
+      responses:
+        '200':
+          description: update success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/classification'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: classificationId
+          description: the id of classification
+          in: path
+          required: true
+          schema:
+            type: integer
     delete:
-      description:
+      description: delete classification
+      tags:
+        - Dataset Manage
+      responses:
+        '204':
+          description: delete success
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: classificationId
+          description: the id of classification
+          in: path
+          required: true
+          schema:
+            type: integer
+  /datasets/{datasetId}/notations:
+    get:
+      description: get the notations of the dataset
+      tags:
+        - Dataset Manage
+      responses:
+        '200':
+          description: get success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notation'
+        '400':
+          description: get fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not found
+      parameters:
+        - name: datasetId
+          description: the if od dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+    post:
+      description: create the notation of the dataset
+      tags:
+        - Dataset Manage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notation'
+      responses:
+        '201':
+          description: create success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notation'
+        '400':
+          description: create fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not found
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+  /datasets/{datasetId}/notations/{notationId}:
+    get:
+      description: get classification of dataset
+      tags:
+        - Dataset Manage
+      responses:
+        '200':
+          description: get success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notation'
+        '400':
+          description: get fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not found
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: notationId
+          description: the id of notation
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+    put:
+      description: update notation
+      tags:
+        - Dataset Manage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notation'
+      responses:
+        '200':
+          description: update success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notation'
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: notationId
+          description: the id of notcation
+          in: path
+          required: true
+          schema:
+            type: integer
+    delete:
+      description: delete notcation
+      tags:
+        - Dataset Manage
+      responses:
+        '204':
+          description: delete success
+        '400':
+          description: fail
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+        '401':
+          description: do not have permission
+        '404':
+          description: not exist
+      parameters:
+        - name: datasetId
+          description: the id of dataset
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: notationId
+          description: the id of classification
+          in: path
+          required: true
+          schema:
+            type: integer
 components:
   schemas:
     user:
@@ -511,6 +1261,22 @@ components:
           format: int32
         status:
           type: integer
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+        audittime:
+          type: string
+          format: date-time
+        auditor_id:
+          type: integer
+          format: int32
+        auditor:
+          type: string
     notation:
       type: object
       properties:
@@ -525,3 +1291,76 @@ components:
           format: int32
         notation:
           type: string
+    permission:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        resource-id:
+          type: integer
+          format: int32
+        operation-id:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+    role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        scope:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        createtime:
+          type: string
+          format: date-time
+        creator_id:
+          type: integer
+          format: int32
+        creator:
+          type: string
+    error:
+      type: object
+      properties:
+        error-type:
+          type: string
+        error-message:
+          type: string
+        error-trace:
+          type: string
+  responses:
+    OPERATION_FAIL:
+      description: the request operation fails
+      content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/error'
+    ILLEGAL_ACCESS:
+      description: do not have permission.
+    NOT_FOUND:
+      description: the requested resource is not exist
